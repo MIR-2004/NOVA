@@ -79,7 +79,7 @@ const canvasEditor = ({ project }) => {
                 canvas.getContext().scale(scaleFactor, scaleFactor);
             }
 
-            if (project.currentImageUrl || project.originalImageurl) {
+            if (project.currentImageUrl || project.originalImageUrl) {
                 try {
                     const imageUrl = project.currentImageUrl || project.originalImageUrl;
 
@@ -215,7 +215,21 @@ const canvasEditor = ({ project }) => {
 
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize)
-    }, [canvasEditor, project])
+    }, [canvasEditor, project]);
+
+  useEffect(() => {
+    if (!canvasEditor) return;
+
+    switch (activeTool) {
+      case "crop":
+        canvasEditor.defaultCursor = "crosshair";
+        canvasEditor.hoverCursor = "crosshair";
+        break;
+      default:
+        canvasEditor.defaultCursor = "default";
+        canvasEditor.hoverCursor = "move";
+    }
+  }, [canvasEditor, activeTool]);
 
 
     return (
