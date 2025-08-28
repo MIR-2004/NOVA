@@ -4,6 +4,7 @@ import React from 'react'
 import CropContent from './tools/crop';
 import AdjustControls from './tools/adjust';
 import ResizeContent from './tools/resize';
+import BackgroundControls from './tools/ai-background';
 
 
 
@@ -84,6 +85,8 @@ function renderToolConfig(activeTool, project){
       return <ResizeContent project={project} />;
     case "adjust":
       return <AdjustControls />;
+     case "background":
+      return <BackgroundControls/>
     default:
       return <div>Select a tool to get started</div>
   }

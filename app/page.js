@@ -6,6 +6,7 @@ import { FeaturesSection } from "@/components/feature-section"
 import dynamic from "next/dynamic"
 import ContactForm from "@/components/contact-form"
 import Header from "@/components/header"
+import FloatingShapes from "@/components/floating-shapes"
 
 const StatsSection = dynamic(() => import("@/components/interactive-stats").then(m => m.default), { ssr: false })
 const PricingSection = dynamic(() => import("@/components/pricing-section").then(m => m.PricingSection), { ssr: false })
@@ -13,11 +14,12 @@ const PricingSection = dynamic(() => import("@/components/pricing-section").then
 export default function Home() {
   return (
     <main className=" min-h-screen text-white">
+      <FloatingShapes/>
       <Header/>
       <CustomCursor/>
       <HeroSection />
       <FeaturesSection />
-      <StatsSection />
+      <StatsSection /> 
       <PricingSection />
       <section id="contact" className="py-24 bg-slate-950">
         <div className="max-w-xl mx-auto px-6 text-center">
