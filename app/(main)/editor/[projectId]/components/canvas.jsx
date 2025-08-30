@@ -4,7 +4,6 @@ import { useCanvas } from "@/context/context";
 import { api } from "@/convex/_generated/api";
 import { useConvexMutation } from "@/hooks/use-convex-query";
 import { Canvas, FabricImage } from "fabric";
-import { Loader2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 

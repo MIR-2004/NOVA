@@ -3,7 +3,7 @@ import { useAuth } from "@clerk/nextjs";
 export function usePlanAccess(){
     const { has } = useAuth();
 
-    const isPro = has?.({plan: "pro"}) || false;
+    const isPro = has?.({plan: "pro_user"}) || false;
 
     const isFree = !isPro;
 

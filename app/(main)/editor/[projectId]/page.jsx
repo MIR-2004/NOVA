@@ -102,7 +102,7 @@ const Editor = () => {
               <CanvasEditor project={project}/>
             </div>
           </div>
-
+          
 
         </div>
       </div>

@@ -86,7 +86,7 @@ function renderToolConfig(activeTool, project){
     case "adjust":
       return <AdjustControls />;
      case "background":
-      return <BackgroundControls/>
+      return <BackgroundControls project={project} />
     default:
       return <div>Select a tool to get started</div>
   }
