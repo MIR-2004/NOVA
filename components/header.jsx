@@ -95,13 +95,10 @@ const Header = () => {
         <div className='flex items-center gap-3 ml-10 md:ml-20'>
           <Unauthenticated>
             <SignInButton>
-              <Button variant="glassGlow" className="interactive">
+              <Button variant="primary" className="interactive">
                 Sign In
               </Button>
             </SignInButton>
-            <SignUpButton>
-              <Button variant="hyper" className="interactive">Get Started</Button>
-            </SignUpButton>
           </Unauthenticated>
           <Authenticated>
             <UserButton appearance={{

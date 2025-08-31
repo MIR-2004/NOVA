@@ -72,7 +72,7 @@ export default function HeroSection() {
 				<div className="mt-10 flex items-center justify-center gap-4">
 					<button
 						onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-						className="interactive inline-flex items-center cursor-pointer justify-center rounded-full bg-white/10 border border-white/20 backdrop-blur-lg hover:scale-105 hover:shadow-2xl transition-transform px-6 py-3 text-white"
+						className="interactive inline-flex items-center cursor-pointer justify-center rounded-full bg-white/10 border border-white/20 backdrop-blur-lg hover:scale-105 hover:shadow-2xl transition-transform px-4 py-2 text-white"
 					>
 						Experience the Magic
 					</button>
