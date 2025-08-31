@@ -1,0 +1,42 @@
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { ThemeProvider } from "next-themes";
+import { Toaster } from "@/components/ui/sonner";
+import { ConvexClientProvider } from "./ConvexClientProvider";
+import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
+
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata = {
+  title: "Nova",
+  description: "Professional image editing",
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.className}`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ClerkProvider
+            appearance={{
+              baseTheme: dark
+            }}
+          >
+          <ConvexClientProvider>
+            <main className="bg-slate-950 min-h-screen text-white overflow-x-hidden">
+              <Toaster richColors />
+              {children}
+            </main>
+          </ConvexClientProvider>
+          </ClerkProvider>
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}
