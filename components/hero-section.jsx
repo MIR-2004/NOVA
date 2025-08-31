@@ -5,10 +5,11 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer"
 import { useMousePosition } from "@/hooks/use-mouse-position"
 import { Authenticated, Unauthenticated } from "convex/react"
-import { LayoutDashboard} from "lucide-react"
+import { LayoutDashboard, MoveRight} from "lucide-react"
 import { Button } from "./ui/button"
 import { SignUpButton } from "@clerk/nextjs"
 import Link from "next/link"
+import InteractiveGlassInterface from "./floating-div"
 
 function useGlitchText(text) {
 	const [glitch, setGlitch] = useState(text)
@@ -78,7 +79,10 @@ export default function HeroSection() {
 					</button>
 					<Unauthenticated>
 						<SignUpButton>
-							<Button variant="hyper" className="interactive">Get Started</Button>
+							<Button variant="hyper" className="interactive">
+								<span>Get Started</span>
+								<MoveRight className="h-4 w-4"/>
+							</Button>
 						</SignUpButton>
 					</Unauthenticated>
 					<Authenticated>
@@ -91,31 +95,7 @@ export default function HeroSection() {
 					</Authenticated>
 				</div>
 
-				<motion.div
-					initial={{ opacity: 0, scale: 0.95 }}
-					animate={isIntersecting ? { opacity: 1, scale: 1 } : {}}
-					transition={{ delay: 0.3, duration: 0.8 }}
-					className="mt-16"
-					style={{ perspective: 1000 }}
-				>
-					<motion.div
-						style={{ transformStyle: "preserve-3d" }}
-						animate={{ rotateX: tilt.rotateX, rotateY: tilt.rotateY }}
-						transition={{ type: "spring", stiffness: 120, damping: 20 }}
-						className="relative mx-auto w-[90vw] max-w-4xl h-72 md:h-96 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-lg overflow-hidden"
-					>
-						<motion.div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-cyan-500/10" animate={{ opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 4, repeat: Infinity }} />
-						<div className="absolute inset-0 grid grid-cols-3 gap-2 p-4">
-							<div className="rounded-lg bg-white/5 border border-white/10" />
-							<div className="rounded-lg bg-white/5 border border-white/10" />
-							<div className="rounded-lg bg-white/5 border border-white/10" />
-							<div className="col-span-2 rounded-lg bg-white/5 border border-white/10" />
-							<div className="rounded-lg bg-white/5 border border-white/10" />
-							<div className="rounded-lg bg-white/5 border border-white/10" />
-							<div className="col-span-3 rounded-lg bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-cyan-500/20 border border-white/10 h-16 md:h-24" />
-						</div>
-					</motion.div>
-				</motion.div>
+				<InteractiveGlassInterface/>
 			</motion.div>
 		</section>
 	)
