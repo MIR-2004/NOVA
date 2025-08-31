@@ -49,7 +49,7 @@ export default function HeroSection() {
 	}, [mouse.x, mouse.y])
 
 	return (
-		<section id="home" ref={setNode} className="relative pt-20 h-screen flex items-center justify-center text-white overflow-hidden">
+		<section id="home" ref={setNode} className="relative pt-25 h-screen flex items-center justify-center text-white overflow-hidden">
 			<div className="absolute inset-0 -z-10">
 				<div className="absolute -top-24 -left-24 w-[40rem] h-[40rem] bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 rounded-full blur-3xl opacity-20 animate-pulse" />
 				<div className="absolute -bottom-24 -right-24 w-[40rem] h-[40rem] bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 rounded-full blur-3xl opacity-20 animate-pulse" />
