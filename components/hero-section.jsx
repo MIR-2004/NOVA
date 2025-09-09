@@ -79,7 +79,7 @@ export default function HeroSection() {
 					</button>
 					<Unauthenticated>
 						<SignUpButton>
-							<Button variant="hyper" className="interactive">
+							<Button variant="hyper" className="interactive hidden sm:flex">
 								<span>Get Started</span>
 								<MoveRight className="h-4 w-4"/>
 							</Button>
@@ -87,7 +87,7 @@ export default function HeroSection() {
 					</Unauthenticated>
 					<Authenticated>
 						<Link href="/dashboard">
-							<Button variant="primary" className="interactive hidden sm:flex">
+							<Button variant="primary" className="interactive">
 								<LayoutDashboard className="h-4 w-4" />
 								<span className='hidden md:flex'>Go to Dashboard</span>
 							</Button>
