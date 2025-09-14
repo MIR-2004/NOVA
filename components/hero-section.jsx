@@ -73,13 +73,13 @@ export default function HeroSection() {
 				<div className="mt-10 flex items-center justify-center gap-4">
 					<button
 						onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-						className="interactive inline-flex items-center cursor-pointer justify-center rounded-full bg-white/10 border border-white/20 backdrop-blur-lg hover:scale-105 hover:shadow-2xl transition-transform px-4 py-2 text-white"
+						className="interactive items-center cursor-pointer justify-center rounded-full bg-white/10 border border-white/20 backdrop-blur-lg hover:scale-105 hover:shadow-2xl transition-transform px-4 py-2 text-white hidden md:flex"
 					>
 						Experience the Magic
 					</button>
 					<Unauthenticated>
 						<SignUpButton>
-							<Button variant="hyper" className="interactive hidden sm:flex">
+							<Button variant="hyper" className="interactive">
 								<span>Get Started</span>
 								<MoveRight className="h-4 w-4"/>
 							</Button>
@@ -89,7 +89,7 @@ export default function HeroSection() {
 						<Link href="/dashboard">
 							<Button variant="primary" className="interactive">
 								<LayoutDashboard className="h-4 w-4" />
-								<span className='hidden md:flex'>Go to Dashboard</span>
+								<span className='flex'>Go to Dashboard</span>
 							</Button>
 						</Link>
 					</Authenticated>
