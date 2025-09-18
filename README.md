@@ -3,7 +3,7 @@
 ## Overview
 Nova is a modern, browser-based image editor. Create and manage projects, upload assets, and edit with powerful tools like crop, resize, text, adjustments, and AI-assisted features — all from your browser.
 
-> Try the app — [Go to website]()
+> Try the app — [Go to website](https://nova-eta-three.vercel.app/)
 
 ## Features
 - **Authentication**: Secure sign-in/sign-up powered by Clerk. Protected routes for `/dashboard` and `/editor`.
