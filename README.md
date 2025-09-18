@@ -1,80 +1,96 @@
 # Nova - Online Image Editing Tool
 
 ## Overview
-Transform your images with professional-grade editing tools - all powered by cutting-edge web technology. This intuitive, browser-based photo editor delivers desktop-class functionality without downloads or installations, offering seamless image enhancement and creative transformation capabilities for photographers, designers, and content creators of all skill levels.
+Nova is a modern, browser-based image editor. Create and manage projects, upload assets, and edit with powerful tools like crop, resize, text, adjustments, and AI-assisted features — all from your browser.
 
-> Try the app - [Go to website]()
+> Try the app — [Go to website]()
 
 ## Features
-- **Authentication**: Secure user registration and login using JWT.
-- **Role-Based Authorization**: Admin users have privileged access to manage products, orders, and users, while regular users can browse and purchase products.
-- **Product Management**: Add, edit, and delete products (admin access only).
-- **Cart System**: Add items to a cart and proceed to checkout.
-- **Order Management**: Place orders and view order history.
-- **Search and Filtering**: Search products and filter them by categories, price range, and more.
-- **Responsive Design**: Mobile-friendly user interface.
+- **Authentication**: Secure sign-in/sign-up powered by Clerk. Protected routes for `/dashboard` and `/editor`.
+- **Projects**: Create, view, update, and delete projects. Project limits and usage tracked per plan.
+- **Editor Tools**: Crop, resize, text, adjustments, background removal (AI), and more with a `fabric`-powered canvas.
+- **Asset Uploads**: Image uploads to ImageKit with automatic thumbnail generation.
+- **Realtime Data**: Convex for realtime storage of users, projects, and usage.
+- **Responsive UI**: Next.js App Router with TailwindCSS v4 and shadcn/ui components.
 
 ## Tech Stack
-### Frontend
-- **Next.js**: For building a dynamic and responsive user interface.
-- 
-### Backend
-- **Node.js**: For server-side scripting.
-- **Express.js**: For building RESTful APIs.
-- **Convex**: As the Realtime database for persistent storage.
+### App
+- **Next.js 15 (App Router)**
+- **React 19**
+- **TailwindCSS 4**
+- **shadcn/ui (Radix primitives)**
 
-### Other Tools
-- **Postman**: For API testing.
-- **Mongoose**: For MongoDB object modeling.
-- **Git**: For version control.
+### Auth & Data
+- **Clerk** for authentication and route protection
+- **Convex** for realtime database and serverless functions
 
-## System Architecture
-The application follows a **3-tier architecture**:
-1. **Frontend**: Handles user interactions and communicates with the backend via REST APIs.
-2. **Backend**: Implements business logic, authentication, and API endpoints.
-3. **Database**: Stores user information, product details, and orders.
+### Media
+- **ImageKit** for image storage, CDN, and transformations
 
-## Installation and Setup
-### Prerequisites
-- Node.js
-- MongoDB
+## Project Structure
+- `app/` — Next.js App Router pages and UI, including `dashboard` and `editor`
+- `convex/` — Convex schema and functions (`users.js`, `projects.js`)
+- `app/api/imagekit/upload/route.js` — Server route for authenticated ImageKit uploads
+- `middleware.js` — Protects `/dashboard` and `/editor` via Clerk
 
-### Steps to Run
-#### Backend
-1. Clone the repository and navigate to the backend folder:
-   ```bash
-   git clone https://github.com/.git
-   cd Lavishta
-   ```
-2. Install dependencies:
+## Environment Variables
+Create a `.env.local` in the project root with the following keys:
+
+```env
+# Next.js
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+
+# Clerk (Auth)
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_...
+CLERK_SECRET_KEY=sk_...
+
+# Clerk issuer for Convex auth config
+# Use the issuer domain from your Clerk JWT template for "convex"
+VITE_CLERK_ISSUER_DOMAIN=https://<your-clerk-issuer-domain>
+
+# Convex
+NEXT_PUBLIC_CONVEX_URL=https://<your-convex-deployment>.convex.cloud
+
+# ImageKit
+NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY=public_...
+IMAGEKIT_PRIVATE_KEY=private_...
+NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT=https://ik.imagekit.io/<your_imagekit_id>
+```
+
+Notes:
+- `convex/auth.config.js` reads `VITE_CLERK_ISSUER_DOMAIN` for JWT verification.
+- The Next.js client uses `NEXT_PUBLIC_CONVEX_URL` in `app/ConvexClientProvider.jsx`.
+- The ImageKit upload route requires all three ImageKit variables and an authenticated Clerk user.
+
+## Getting Started
+1. Install dependencies:
    ```bash
    npm install
    ```
-3. Configure environment variables in a `/backend/config/config.env` file:
-   ```env
-   DATABASE_URL=<Your_DB_URL>
-   BETTER_AUTH_SECRET=<Your_Better_Auth_Secret>
-   BETTER_AUTH_URL=<Your_Better_Auth_URL>
-   GITHUB_CLIENT_ID=<Your_Github_Client_Secret_Key>
-   GITHUB_CLIENT_SECRET=<Your_Github_Client_Secret_Key>
-   GOOGLE_CLIENT_ID=<Your_Google_Client_ID>
-   GOOGLE_CLIENT_SECRET=<Your_Google_Client_Secret_Key>
-   NEXT_APP_URL="http://localhost:3000"
+2. Configure `.env.local` as above.
+3. Initialize and deploy Convex (first-time setup):
+   ```bash
+   npx convex dev
+   # or: npx convex deploy
    ```
-4. Start the server:
+   Copy your Convex deployment URL into `NEXT_PUBLIC_CONVEX_URL`.
+4. Run the app:
    ```bash
    npm run dev
    ```
-
-#### Access the Application
-- Open your browser and navigate to `http://localhost:3000`.
+5. Open `http://localhost:3000`.
 
 ## Usage
-1. **User Registration/Login**: Create an account or log in to access features.
-2. **Browse Products**: Explore products and add them to your cart.
-3. **Admin Access**: Log in as an admin to manage products, orders, and users.
-4. **Place Orders**: Add items to your cart and proceed to checkout.
-5. **Order History**: View your past orders in the user dashboard.
+1. Sign in with Clerk.
+2. Go to `Dashboard` to create a new project and upload an image (uploads via ImageKit).
+3. Open a project in the `Editor` to use tools (crop, resize, text, AI helpers).
+4. Changes persist via Convex; thumbnails are generated via ImageKit transformations.
+
+## Scripts
+- `npm run dev` — Start Next.js with Turbopack
+- `npm run build` — Build for production
+- `npm run start` — Start production server
+- `npm run lint` — Run ESLint
 
 ## Contact
 - **Email**: mir.saif.ali2004@gmail.com
